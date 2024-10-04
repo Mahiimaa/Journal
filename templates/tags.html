@@ -1,0 +1,133 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tags Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body {
+      margin: 0;
+    }
+    
+    .navbar {
+      width: 250px;
+      background-color: #ebdca5;
+      color:white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .navbar a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color:black;
+      text-decoration: none;
+      width: 100%;
+      height: 60px;
+    }
+    
+    .navbar a:hover {
+      background-color: #555;
+    }
+    
+    .navbar i {
+      margin-right: 5px;
+    }
+    
+    .content {
+      margin-left: 600px;
+      padding: 20px;
+    }
+    .content .search-bar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+    }
+    
+    .content .search-bar input {
+      margin-right: 5px;
+    }
+    
+    .content .date-time {
+      margin-left: 340px;
+      margin-top: 20px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: bold;
+    }  .dropdown-content {
+      display: none;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      background-color: #f9f9f9;
+      min-width: 120px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      margin-left: 1000px;
+    }
+    
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      margin-top:300px;
+      margin-left:600px;
+    }
+    
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <p style="font-size: large; font-weight: 900; color: black;"> Welcome </p>
+    <a href="#"><i class="fa fa-user"></i>You</a>
+    <a href="{% url 'home' %}"><i class="fa fa-home"></i>Home</a>
+    <a href="{% url 'calendar' %}"><i class="fa fa-calendar"></i>Calendar</a>
+    <a href="{% url 'entries' %}"><i class="fa fa-book"></i>Journal Entries</a>
+    <a href="{% url 'tags' %}"><i class="fa fa-tag"></i>Tags</a>
+    <a href="{% url 'settings' %}"><i class="fa fa-cog"></i>Settings</a>
+  </div>  
+  <div class="dropdown">
+    <span>Categories</span>
+    <div class="dropdown-content">
+      <a href="#">Travel</a>
+      <a href="#">Family</a>
+      <a href="#">Daily Journal</a>
+      <a href="#">Friends</a>
+      <a href="#">Work</a>
+      <a href="#">Others</a>
+    </div>
+  <div class="content">
+    <div class="date-time">
+        <script>
+          function updateDateTime() {
+            var now = new Date();
+            var date = now.toLocaleDateString();
+            var time = now.toLocaleTimeString();
+            document.getElementById("datetime").textContent = date + " " + time;
+          }
+          setInterval(updateDateTime, 1000);
+        </script>
+        <span id="datetime"></span>
+      </div>
+      <div class="search-bar">
+        <input type="text" placeholder="Search...">
+</body>
+</html>

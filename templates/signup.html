@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+</head>
+<body> 
+  <div class="frame2">
+  <div class="lhs-container">
+    <p id="title"> Dear <br> Diary</p>
+    <p id="subtitle"> A personal Diary <br> web app </p>
+  </div>
+      <div class="login-container">
+          <h1>Sign up</h1>
+          <form action="" method="post">
+            {% csrf_token %}
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" required>
+              <br>
+              <label for="username">Username:</label>
+              <input type="username" id="'username" name="username" required>
+              <br>
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password" required>
+              <br>
+              <button type="sign-up" onclick="window.location.href='/login'"> </a> Sign up</button>
+          </form>
+      </div>
+  </div>
+</body>
+</html>

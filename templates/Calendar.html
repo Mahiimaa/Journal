@@ -1,0 +1,198 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tags Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/calendar.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+</head>
+  <style>
+    body {
+      margin: 0;
+    }
+    
+    .navbar {
+      width: 250px;
+      background-color: #ebdca5;
+      color:white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .navbar a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color:black;
+      text-decoration: none;
+      width: 100%;
+      height: 60px;
+    }
+    
+    .navbar a:hover {
+      background-color: #555;
+    }
+    
+    .navbar i {
+      margin-right: 5px;
+    }
+    
+    .content {
+      margin-left: 600px;
+      padding: 20px;
+    }
+    
+    .content .date-time {
+      margin-left: 340px;
+      margin-top: 20px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <p style="font-size: large; font-weight: 900; color: black;"> Welcome </p>
+    <a href="#"><i class="fa fa-user"></i>You</a>
+    <a href="{% url 'home' %}"><i class="fa fa-home"></i>Home</a>
+    <a href="{% url 'calendar' %}"><i class="fa fa-calendar"></i>Calendar</a>
+    <a href="{% url 'entries' %}"><i class="fa fa-book"></i>Journal Entries</a>
+    <a href="{% url 'tags' %}"><i class="fa fa-tag"></i>Tags</a>
+    <a href="{% url 'logout' %}"><i class="fa fa-cog"></i>Logout</a>
+  </div>
+  <h1>Calendar</h1>
+    <div class="calendar">
+      <header>
+        <h3></h3>
+        <nav>
+          <button id="prev"></button>
+          <button id="next"></button>
+        </nav>
+      </header>
+      <section>
+        <ul class="days">
+          <li>Sun</li>
+          <li>Mon</li>
+          <li>Tue</li>
+          <li>Wed</li>
+          <li>Thu</li>
+          <li>Fri</li>
+          <li>Sat</li>
+        </ul>
+        <ul class="dates"></ul>
+      </section>
+    </div>
+  <div class="content">
+    <div class="date-time">
+        <script>
+          function updateDateTime() {
+            var now = new Date();
+            var date = now.toLocaleDateString();
+            var time = now.toLocaleTimeString();
+            document.getElementById("datetime").textContent = date + " " + time;
+          }
+          setInterval(updateDateTime, 1000);
+        </script>
+        <span id="datetime"></span>
+      </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var calendarEl = document.getElementById('calendar');
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    events: '/get-events/'  // URL to retrieve the events from Django
+                });
+                calendar.render();
+            });
+        </script>
+        <script>
+        const header = document.querySelector(".calendar h3");
+        const dates = document.querySelector(".dates");
+        const navs = document.querySelectorAll("#prev, #next");
+        
+        const months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        
+        let date = new Date();
+        let month = date.getMonth();
+        let year = date.getFullYear();
+        
+        function renderCalendar() {
+          const start = new Date(year, month, 1).getDay();
+          const endDate = new Date(year, month + 1, 0).getDate();
+          const end = new Date(year, month, endDate).getDay();
+          const endDatePrev = new Date(year, month, 0).getDate();
+        
+          let datesHtml = "";
+        
+          for (let i = start; i > 0; i--) {
+            datesHtml += `<li class="inactive">${endDatePrev - i + 1}</li>`;
+          }
+        
+          for (let i = 1; i <= endDate; i++) {
+            let className =
+              i === date.getDate() &&
+              month === new Date().getMonth() &&
+              year === new Date().getFullYear()
+                ? ' class="today"'
+                : "";
+            datesHtml += `<li${className}>${i}</li>`;
+          }
+        
+          for (let i = end; i < 6; i++) {
+            datesHtml += `<li class="inactive">${i - end + 1}</li>`;
+          }
+        
+          dates.innerHTML = datesHtml;
+          header.textContent = `${months[month]} ${year}`;
+        }
+        
+        navs.forEach((nav) => {
+          nav.addEventListener("click", (e) => {
+            const btnId = e.target.id;
+        
+            if (btnId === "prev" && month === 0) {
+              year--;
+              month = 11;
+            } else if (btnId === "next" && month === 11) {
+              year++;
+              month = 0;
+            } else {
+              month = btnId === "next" ? month + 1 : month - 1;
+            }
+        
+            date = new Date(year, month, new Date().getDate());
+            year = date.getFullYear();
+            month = date.getMonth();
+        
+            renderCalendar();
+          });
+        });
+        
+        renderCalendar()
+      </script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Journal Page</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    
+    .header {
+      background-color: #ebdca5;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .header .back-button,
+    .header .dots {
+      padding: 5px;
+      font-size: 20px;
+      color: black;
+      cursor: pointer;   
+    }
+    
+    .content {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+.content .current-date {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.content .title-field {
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.content textarea {
+  width: 100%;
+  height: calc(100vh - 300px);
+  margin: 0;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+}
+    .icons { 
+      position:absolute;
+      margin-bottom: 10px;
+      height:60px;
+      width:400px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin-left: 570px;
+      padding-top: 15px;
+      background-color: #ebdca5;
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    button[type="tags"]{
+        height:60px;
+        width: 160px;
+        font-size:larger;
+        position:absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #ebdca5;
+        color: rgb(7, 7, 7);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 300px;
+        margin-top: 2px;
+        margin-bottom: 10px;
+    }
+    .tags .tag-options {
+      display: none;
+      position: absolute;
+      top: 40px;
+      left: 0;
+      width: 160px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .tags .tag-options button {
+      display: block;
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 5px;
+      text-align: left;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+    button[type="submit"]{
+      height:60px;
+        width: 160px;
+        font-size:larger;
+        position:absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #ebdca5;
+        color: rgb(7, 7, 7);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 2px;
+        margin-bottom: 10px;
+        margin-left:1100px;
+    }
+    .media-preview {
+      max-width: 100%;
+      max-height: 200px;
+      margin-bottom: 10px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="back-button" onclick="window.location.href='/home'">&#8592;</div>
+    <div class="dots">&#8942;</div>
+  </div>
+  <form action="{% url 'create_entry' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="content">
+      <div class="current-date">
+        <span id="date"></span>
+      </div>
+      <input type="text" class="title-field" name="title" placeholder="Title" value="{{ context.title }}">
+      <textarea name="content" placeholder=".....">{{ context.content }}</textarea>
+      <input id="media-upload" type="file" name="entry_image" style="display: none;">
+      <input type="hidden" name="user" value="{{ user }}" />
+
+      <div id="media-preview-container">
+        <img src="{{ context.image.url }}" alt="" srcset="" width="100" height="100" >
+      </div>
+    </div>
+  <div class="tags"> 
+    <button type="tags" onclick="toggleTagOptions()">Tags</button>
+    <div class="tag-options" id="tagOptions">
+      <button onclick="selectTag('Travel')">Travel</button>
+      <button onclick="selectTag('Family')">Family</button>
+      <button onclick="selectTag('Daily journal')">Daily journal</button>
+      <button onclick="selectTag('Friends')">Friends</button>
+      <button onclick="selectTag('Work')">Work</button>
+      <button onclick="selectTag('Others')">Others</button>
+    </div>
+  </div>
+  <div class="icons">
+    <img src="https://png.pngitem.com/pimgs/s/139-1398915_icon-checklist-hd-png-download.png" alt="checklist"  style="width:50px; height:50px; padding-right:80px;">
+    <label for="media-upload">
+        <img src="https://icons.veryicon.com/png/o/miscellaneous/ionicons/ios-camera-1.png" alt="multimedia" name="entry-image" style="width:50px; height:50px; padding-right:80px; cursor: pointer;">
+      </label>
+      <input id="media-upload" type="file" style="display: none;">
+    <img src="https://png.pngtree.com/png-vector/20190721/ourmid/pngtree-pen-icon-for-your-project-png-image_1557982.jpg" alt="pen" style="width:50px; height:50px;">
+  </div>
+  <div class="done">
+    <button type="submit">Done</button>
+  </div>
+</div>
+</form>
+<script>
+  // JavaScript to display current date
+  const currentDate = new Date();
+  document.getElementById("date").innerText = currentDate.toDateString();
+</script>
+<script>
+  // JavaScript code
+
+  const mediaUpload = document.getElementById('media-upload');
+  const mediaPreviewContainer = document.getElementById('media-preview-container');
+
+  mediaUpload.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        const mediaPreview = document.createElement('img');
+        mediaPreview.classList.add('media-preview');
+        mediaPreview.src = e.target.result;
+
+        mediaPreviewContainer.innerHTML = '';
+        mediaPreviewContainer.appendChild(mediaPreview);
+      };
+
+      reader.readAsDataURL(file);
+    } else {
+      mediaPreviewContainer.innerHTML = '';
+    }
+  });
+</script>
+  <script>
+    // Rest of the JavaScript code
+    function toggleTagOptions() {
+      const tagOptions = document.getElementById("tagOptions");
+      tagOptions.style.display = tagOptions.style.display === "block" ? "none" : "block";
+    }
+    function selectTag(tag) {
+      const tagButton = document.querySelector(".tags button[type='tags']");
+      tagButton.innerText = tag;
+      toggleTagOptions();
+    }
+  </script>
+  <script>
+    document.getElementById("doneButton").addEventListener("click", function() {
+      const title = document.querySelector(".title-field").value;
+      const content = document.querySelector("textarea").value;
+      
+      fetch("/save-entry/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "X-CSRFToken": "{{ csrf_token }}",  // Add this line to handle CSRF protection
+        },
+        body: new URLSearchParams({
+          'title': title,
+          'content': content,
+        }).toString(),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Entry saved:", data);
+        window.location.href = "entries.html";
+      })
+      .catch(error => {
+        console.error("Error saving entry:", error);
+      });
+    });
+  </script>
+</body>
+</html>

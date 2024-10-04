@@ -1,0 +1,61 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How you feeling?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .container{
+            position: relative;
+        }
+        #feel{
+            font-size: xx-large;
+            font-weight: 900;
+            text-align: center;
+            background-color: #ebdca5;
+        }
+        .frame {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .frame img {
+            width: 200px;
+            height: 200px;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+            cursor: pointer;
+        }
+        .frame img:hover {
+            filter: grayscale(0%);
+        }
+        .frame img.border {
+            border: 4px solid red; /* Customize the border color and thickness as desired */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="feel"> How are you feeling today?</div>
+        <div class="frame">
+            <img src="https://img.freepik.com/premium-vector/cartoon-happy-face-emoji-simple-design-minimalist-style-illustration_529206-159.jpg" alt="happy" onclick="changeColor(this)">
+            <img src="https://www.supercoloring.com/sites/default/files/styles/coloring_medium/public/cif/2022/02/40-expressionless-face-emoji-coloring-page.png" alt="neutral" onclick="changeColor(this)">
+            <img src="https://media.istockphoto.com/id/932022348/vector/sad-face-icon-unhappy-face-symbol.jpg?s=612x612&w=0&k=20&c=ZpGiAAFxUNnde83WA2mqotDiZF2lFukmu5vs8fHc8rA=" alt="sad" onclick="changeColor(this)">
+            <img src="https://st.depositphotos.com/69708072/59660/v/450/depositphotos_596600888-stock-illustration-very-angry-emotions-icon-simple.jpg" alt="angry" onclick="changeColor(this)">
+        </div>
+        <p style="text-align: center; font-size: larger;"> No matter what the situation is, remember to be gentle on yourself. </p>
+        <button style="width: 10%; border-radius:5px; margin-top: 450px;  top: 50%; left: 50%; position:absolute; padding: 10px; font-size:larger; background-color: #ebdca5;" type="continue" onclick="window.location.href='/home'">continue</button>
+    </div>
+    <script>
+        function changeColor(image) {
+            image.classList.toggle('border');
+        }
+    </script>
+</body>
+</html>

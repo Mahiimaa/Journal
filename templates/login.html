@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body> 
+  <div class="frame2">
+  <div class="lhs-container">
+    <p id="title"> Dear <br> Diary</p>
+    <p id="subtitle"> A personal Diary <br> web app </p>
+  </div>
+      <div class="login-container">
+          <h1>Sign in</h1>
+          <form method="post">
+            {% csrf_token %}
+              <label for="username">Username:</label>
+              <input type="username" id="username" name="username" style=" width: 40%;
+              padding: 10px;
+              margin-left: 70px;
+              border-radius: 5px;
+              border: 1px solid #ccc;
+              margin-top: 20px;
+              margin-bottom: 40px;" required>
+              <br>
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password" required>
+              <br>
+              <a href="#" id="forgot-password">Forgot Password?</a>
+              <br>
+              <button type="submit" style="width: 40%; height: 40px; padding: 10px; font-size: larger; background-color: #ebdca5; color: rgb(7, 7, 7); border: none; border-radius: 5px; cursor: pointer; margin-left: 80px; margin-top: 20px;">Sign in</button>
+              <br>
+              <p id="account"> Don't have an account? <a href="/signup/" id="sign-up">sign up</a></p>
+          </form>
+      </div>
+  </div>
+</body>
+</html>
