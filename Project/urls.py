@@ -18,6 +18,6 @@ urlpatterns = [
     path('logout/', views.dologout, name='logout'),
     path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
     path('delete/<int:entry_id>/', views.delete_entry, name='delete_entry'),
-    path('tags/', views.tags, name='tags'),
+    # path('tags/', views.tags, name='tags'),
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
