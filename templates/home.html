@@ -87,6 +87,50 @@
   <div class="navbar">
     <p style="font-size: large; font-weight: 900; color: black;"> Welcome </p>
     <a href="#"><i class="fa fa-user"></i>You</a>
+    <details className="relative">
+      <summary className="list-none cursor-pointer ">
+        <div
+          className="h-9 w-9 rounded-full flex justify-center items-center select-none font-semibold text-white"
+        
+        >
+          You
+        </div>
+      </summary>
+      <ul className="absolute right-[50%] bg-white w-[16vw] border-2 border-neutral-300 rounded p-4 top-9 ">
+        <div className="flex gap-3 items-center ">
+          <div
+            className="h-12 w-12 rounded-full flex justify-center items-center select-none font-semibold text-white"
+            
+          >
+            MG
+          </div>
+          <div className="flex flex-col">
+            <h1 className="font-medium text-xl text-nowrap ">Mahima Gurung</h1>
+          </div>
+        </div>
+        <hr className="border-[1px] border-neutral-300 m-2"></hr>
+        <div className="flex flex-col px-4">
+          <div className="flex items-center gap-2">
+            <img className="w-6 h-6" src={email} alt="" />
+            <li className="py-2 text-blue-600">email</li>
+          </div>
+          <div className="flex items-center gap-2">
+            <img className="w-6 h-6" src={phone} alt="" />
+
+            <li className="py-2 text-blue-600">contact/li>
+
+          </div>
+          <div className="flex justify-center">
+            <button
+              className="w-[100%] bg-blue-600 rounded p-2 mt-2 text-white "
+              onClick={openChangePassword}
+            >
+              Change Password
+            </button>
+          </div>
+        </div>
+      </ul>
+    </details>
     <a href="{% url 'home' %}"><i class="fa fa-home"></i>Home</a>
     <a href="{% url 'calendar' %}"><i class="fa fa-calendar"></i>Calendar</a>
     <a href="{% url 'entries' %}"><i class="fa fa-book"></i>Journal Entries</a>
