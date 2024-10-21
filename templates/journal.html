@@ -3,22 +3,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--user makes journal entries here-->
+  <!-- User makes journal entries here -->
   <title>Journal Page</title>
   <style>
+    /* Basic styles for body */
     body {
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
     }
-    
+
+    /* Header styles */
     .header {
       background-color: #ebdca5;
       padding: 10px;
       display: flex;
       justify-content: space-between;
     }
-    
+
+    /* Styles for back button and dots */
     .header .back-button,
     .header .dots {
       padding: 5px;
@@ -26,44 +29,51 @@
       color: black;
       cursor: pointer;   
     }
-    
+
+    /* Content styles */
     .content {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-.content .current-date {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
+    /* Current date styles */
+    .content .current-date {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
 
-.content .title-field {
-  width: 100%;
-  padding: 10px;
-  font-size: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-.content textarea {
-  width: 100%;
-  height: calc(100vh - 300px);
-  margin: 0;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  resize: vertical;
-}
+    /* Title input field styles */
+    .content .title-field {
+      width: 100%;
+      padding: 10px;
+      font-size: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Textarea styles */
+    .content textarea {
+      width: 100%;
+      height: calc(100vh - 300px);
+      margin: 0;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      resize: vertical;
+    }
+
+    /* Icons container styles */
     .icons { 
-      position:absolute;
+      position: absolute;
       margin-bottom: 10px;
-      height:60px;
-      width:400px;
+      height: 60px;
+      width: 400px;
       bottom: 0;
       left: 0;
       right: 0;
@@ -74,25 +84,29 @@
       justify-content: center;
       margin-top: 20px;
     }
-    button[type="tags"]{
-        height:60px;
-        width: 160px;
-        font-size:larger;
-        position:absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: #ebdca5;
-        color: rgb(7, 7, 7);
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-left: 300px;
-        margin-top: 2px;
-        margin-bottom: 10px;
+
+    /* Tag button styles */
+    button[type="tags"] {
+      height: 60px;
+      width: 160px;
+      font-size: larger;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #ebdca5;
+      color: rgb(7, 7, 7);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 300px;
+      margin-top: 2px;
+      margin-bottom: 10px;
     }
+
+    /* Tag options styles */
     .tags .tag-options {
-      display: none;
+      display: none; /* Hidden by default */
       position: absolute;
       top: 40px;
       left: 0;
@@ -103,6 +117,8 @@
       padding: 5px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
+
+    /* Tag option button styles */
     .tags .tag-options button {
       display: block;
       width: 100%;
@@ -113,23 +129,27 @@
       background-color: transparent;
       cursor: pointer;
     }
-    button[type="submit"]{
-      height:60px;
-        width: 160px;
-        font-size:larger;
-        position:absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: #ebdca5;
-        color: rgb(7, 7, 7);
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 2px;
-        margin-bottom: 10px;
-        margin-left:1100px;
+
+    /* Submit button styles */
+    button[type="submit"] {
+      height: 60px;
+      width: 160px;
+      font-size: larger;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #ebdca5;
+      color: rgb(7, 7, 7);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 2px;
+      margin-bottom: 10px;
+      margin-left: 1100px;
     }
+
+    /* Media preview styles */
     .media-preview {
       max-width: 100%;
       max-height: 200px;
@@ -139,98 +159,113 @@
   </style>
 </head>
 <body>
+  <!-- Header section with navigation -->
   <div class="header">
-    <div class="back-button" onclick="window.location.href='/home'">&#8592;</div>
-    <div class="dots">&#8942;</div>
+    <div class="back-button" onclick="window.location.href='/home'">&#8592;</div> <!-- Back button -->
+    <div class="dots">&#8942;</div> <!-- Menu dots -->
   </div>
+
+  <!-- Form for creating a journal entry -->
   <form action="{% url 'create_entry' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="content">
       <div class="current-date">
-        <span id="date"></span>
+        <span id="date"></span> <!-- Placeholder for current date -->
       </div>
-      <input type="text" class="title-field" name="title" placeholder="Title" value="{{ context.title }}">
-      <textarea name="content" placeholder=".....">{{ context.content }}</textarea>
-      <input id="media-upload" type="file" name="entry_image" style="display: none;">
-      <input type="hidden" name="user" value="{{ user }}" />
+      <input type="text" class="title-field" name="title" placeholder="Title" value="{{ context.title }}"> <!-- Title input -->
+      <textarea name="content" placeholder=".....">{{ context.content }}</textarea> <!-- Content textarea -->
+      <input id="media-upload" type="file" name="entry_image" style="display: none;"> <!-- Hidden file input for image upload -->
+      <input type="hidden" name="user" value="{{ user }}" /> <!-- Hidden input for user -->
 
       <div id="media-preview-container">
-        <img src="{{ context.image.url }}" alt="" srcset="" width="100" height="100" >
+        <img src="{{ context.image.url }}" alt="" srcset="" width="100" height="100" > <!-- Image preview -->
       </div>
     </div>
-  <div class="tags"> 
-    <button type="tags" onclick="toggleTagOptions()">Tags</button>
-    <div class="tag-options" id="tagOptions">
-      <button onclick="selectTag('Travel')">Travel</button>
-      <button onclick="selectTag('Family')">Family</button>
-      <button onclick="selectTag('Daily journal')">Daily journal</button>
-      <button onclick="selectTag('Friends')">Friends</button>
-      <button onclick="selectTag('Work')">Work</button>
-      <button onclick="selectTag('Others')">Others</button>
+
+    <!-- Tags section -->
+    <div class="tags"> 
+      <button type="tags" onclick="toggleTagOptions()">Tags</button> <!-- Button to toggle tag options -->
+      <div class="tag-options" id="tagOptions">
+        <button onclick="selectTag('Travel')">Travel</button>
+        <button onclick="selectTag('Family')">Family</button>
+        <button onclick="selectTag('Daily journal')">Daily journal</button>
+        <button onclick="selectTag('Friends')">Friends</button>
+        <button onclick="selectTag('Work')">Work</button>
+        <button onclick="selectTag('Others')">Others</button>
+      </div>
+    </div>
+
+    <!-- Icons for actions -->
+    <div class="icons">
+      <img src="https://png.pngitem.com/pimgs/s/139-1398915_icon-checklist-hd-png-download.png" alt="checklist"  style="width:50px; height:50px; padding-right:80px;"> <!-- Checklist icon -->
+      <label for="media-upload">
+          <img src="https://icons.veryicon.com/png/o/miscellaneous/ionicons/ios-camera-1.png" alt="multimedia" name="entry-image" style="width:50px; height:50px; padding-right:80px; cursor: pointer;"> <!-- Camera icon -->
+      </label>
+      <input id="media-upload" type="file" style="display: none;"> <!-- Hidden file input for media upload -->
+      <img src="https://png.pngtree.com/png-vector/20190721/ourmid/pngtree-pen-icon-for-your-project-png-image_1557982.jpg" alt="pen" style="width:50px; height:50px;"> <!-- Pen icon -->
+    </div>
+
+    <!-- Submit button for the form -->
+    <div class="done">
+      <button type="submit">Done</button>
     </div>
   </div>
-  <div class="icons">
-    <img src="https://png.pngitem.com/pimgs/s/139-1398915_icon-checklist-hd-png-download.png" alt="checklist"  style="width:50px; height:50px; padding-right:80px;">
-    <label for="media-upload">
-        <img src="https://icons.veryicon.com/png/o/miscellaneous/ionicons/ios-camera-1.png" alt="multimedia" name="entry-image" style="width:50px; height:50px; padding-right:80px; cursor: pointer;">
-      </label>
-      <input id="media-upload" type="file" style="display: none;">
-    <img src="https://png.pngtree.com/png-vector/20190721/ourmid/pngtree-pen-icon-for-your-project-png-image_1557982.jpg" alt="pen" style="width:50px; height:50px;">
-  </div>
-  <div class="done">
-    <button type="submit">Done</button>
-  </div>
-</div>
-</form>
-<script>
-  // JavaScript to display current date
-  const currentDate = new Date();
-  document.getElementById("date").innerText = currentDate.toDateString();
-</script>
-<script>
-  // JavaScript code
+  </form>
 
-  const mediaUpload = document.getElementById('media-upload');
-  const mediaPreviewContainer = document.getElementById('media-preview-container');
-
-  mediaUpload.addEventListener('change', (event) => {
-    const file = event.target.files[0];
-
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = (e) => {
-        const mediaPreview = document.createElement('img');
-        mediaPreview.classList.add('media-preview');
-        mediaPreview.src = e.target.result;
-
-        mediaPreviewContainer.innerHTML = '';
-        mediaPreviewContainer.appendChild(mediaPreview);
-      };
-
-      reader.readAsDataURL(file);
-    } else {
-      mediaPreviewContainer.innerHTML = '';
-    }
-  });
-</script>
   <script>
-    // Rest of the JavaScript code
+    // JavaScript to display current date
+    const currentDate = new Date();
+    document.getElementById("date").innerText = currentDate.toDateString();
+  </script>
+  
+  <script>
+    // JavaScript for media upload preview
+    const mediaUpload = document.getElementById('media-upload');
+    const mediaPreviewContainer = document.getElementById('media-preview-container');
+
+    mediaUpload.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+          const mediaPreview = document.createElement('img');
+          mediaPreview.classList.add('media-preview');
+          mediaPreview.src = e.target.result;
+
+          mediaPreviewContainer.innerHTML = ''; // Clear previous preview
+          mediaPreviewContainer.appendChild(mediaPreview); // Add new preview
+        };
+
+        reader.readAsDataURL(file); // Read the file as a data URL
+      } else {
+        mediaPreviewContainer.innerHTML = ''; // Clear preview if no file selected
+      }
+    });
+  </script>
+  
+  <script>
+    // JavaScript for toggling tag options
     function toggleTagOptions() {
       const tagOptions = document.getElementById("tagOptions");
-      tagOptions.style.display = tagOptions.style.display === "block" ? "none" : "block";
+      tagOptions.style.display = tagOptions.style.display === "block" ? "none" : "block"; // Toggle visibility
     }
+
+    // Function to select a tag
     function selectTag(tag) {
       const tagButton = document.querySelector(".tags button[type='tags']");
-      tagButton.innerText = tag;
-      toggleTagOptions();
+      tagButton.innerText = tag; // Update button text with selected tag
+      toggleTagOptions(); // Close the tag options
     }
   </script>
+  
   <script>
+    // JavaScript for saving the entry (commented out as it's not used here)
     document.getElementById("doneButton").addEventListener("click", function() {
       const title = document.querySelector(".title-field").value;
       const content = document.querySelector("textarea").value;
-      
+
       fetch("/save-entry/", {
         method: "POST",
         headers: {
@@ -245,10 +280,10 @@
       .then(response => response.json())
       .then(data => {
         console.log("Entry saved:", data);
-        window.location.href = "entries.html";
+        window.location.href = "entries.html"; // Redirect after saving
       })
       .catch(error => {
-        console.error("Error saving entry:", error);
+        console.error("Error saving entry:", error); // Error handling
       });
     });
   </script>
