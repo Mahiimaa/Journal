@@ -1,132 +1,123 @@
-{%load static%}
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-  <!--This is the home page-->
+  <!-- This is the home page -->
   <title>Home Page</title>
+  <!-- Link to Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     body {
-      background:white;
+      background: white; /* Set the background color of the body */
     }
     .navbar {
-      width: 250px;
-      background-color: #ebdca5;
-      color:white;
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      width: 250px; /* Set the width of the navigation bar */
+      background-color: #ebdca5; /* Set the background color of the navbar */
+      color: white; /* Set the text color in the navbar */
+      position: fixed; /* Fix the navbar position on the left */
+      top: 0; /* Position at the top */
+      left: 0; /* Align to the left */
+      height: 100%; /* Set height to fill the viewport */
+      display: flex; /* Use flexbox for layout */
+      flex-direction: column; /* Stack items vertically */
+      align-items: center; /* Center items horizontally */
     }
     .navbar a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color:black;
-      text-decoration: none;
-      width: 100%;
-      height: 60px;
+      display: flex; /* Use flexbox for alignment */
+      align-items: center; /* Center items vertically */
+      justify-content: center; /* Center items horizontally */
+      color: black; /* Set text color for links */
+      text-decoration: none; /* Remove underline from links */
+      width: 100%; /* Full width for links */
+      height: 60px; /* Set height for links */
     }
     
     .navbar a:hover {
-      background-color: #555;
+      background-color: #555; /* Change background color on hover */
     }
     
     .navbar i {
-      margin-right: 5px;
+      margin-right: 5px; /* Add space between icon and text */
     }
     
     .content {
-      margin-left: 600px;
-      padding: 20px;
+      margin-left: 600px; /* Leave space for the navbar */
+      padding: 20px; /* Add padding inside the content area */
     }
     .content .search-bar {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      margin-bottom: 10px;
+      display: flex; /* Use flexbox for alignment */
+      align-items: center; /* Center items vertically */
+      justify-content: flex-end; /* Align items to the right */
+      margin-bottom: 10px; /* Space below the search bar */
     }
     
     .content .search-bar input {
-      margin-right: 5px;
+      margin-right: 5px; /* Space between input and button */
     }
     
     .content .date-time {
-      margin-left: 340px;
-      margin-top: 20px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      padding: 10px;
-      font-size: 16px;
-      font-weight: bold;
+      margin-left: 340px; /* Position relative to content */
+      margin-top: 20px; /* Space above */
+      position: absolute; /* Position absolutely within the content */
+      top: 0; /* Align to the top */
+      left: 0; /* Align to the left */
+      padding: 10px; /* Add padding */
+      font-size: 16px; /* Set font size */
+      font-weight: bold; /* Make text bold */
     }
-    .content.create{
-        display: flex;
-        justify-content: flex-end;
-        margin-bottom: 10px;
+    .content.create {
+      display: flex; /* Use flexbox for layout */
+      justify-content: flex-end; /* Align to the right */
+      margin-bottom: 10px; /* Space below */
     }
-    .quote{
-        width:600px;
-        height:200px;
-        font-weight: 600;
-        background-color: #ebdca5;
-        border-radius:5px;
-        margin-top: 40px;
-        margin-bottom: 200px;
-        margin-right: 0;
-        padding-right:20px;
-        padding: 20px;
-        opacity: 100;
+    .quote {
+      width: 600px; /* Set width for the quote box */
+      height: 200px; /* Set height for the quote box */
+      font-weight: 600; /* Make text bold */
+      background-color: #ebdca5; /* Set background color for the quote box */
+      border-radius: 5px; /* Round corners */
+      margin-top: 40px; /* Space above */
+      margin-bottom: 200px; /* Space below */
+      margin-right: 0; /* No margin on the right */
+      padding-right: 20px; /* Padding on the right */
+      padding: 20px; /* Padding all around */
+      opacity: 100; /* Fully opaque */
     }
   </style>
 </head>
 <body>
-  <!--main home page-->
+  <!-- Main home page -->
   <div class="navbar">
     <p style="font-size: large; font-weight: 900; color: black;"> Welcome </p>
     <a href="#"><i class="fa fa-user"></i>You</a>
-    <details className="relative">
-      <summary className="list-none cursor-pointer ">
-        <div
-          className="h-9 w-9 rounded-full flex justify-center items-center select-none font-semibold text-white"
-         
-        >
+    <!-- User dropdown menu for profile information -->
+    <details class="relative">
+      <summary class="list-none cursor-pointer ">
+        <div class="h-9 w-9 rounded-full flex justify-center items-center select-none font-semibold text-white">
           You
         </div>
       </summary>
-      <ul className="absolute right-[50%] bg-white w-[16vw] border-2 border-neutral-300 rounded p-4 top-9 ">
-        <div className="flex gap-3 items-center ">
-          <div
-            className="h-12 w-12 rounded-full flex justify-center items-center select-none font-semibold text-white"
-            
-          >
+      <ul class="absolute right-[50%] bg-white w-[16vw] border-2 border-neutral-300 rounded p-4 top-9 ">
+        <div class="flex gap-3 items-center ">
+          <div class="h-12 w-12 rounded-full flex justify-center items-center select-none font-semibold text-white">
             MG
           </div>
-          <div className="flex flex-col">
-            <h1 className="font-medium text-xl text-nowrap ">Mahima Gurung</h1>
+          <div class="flex flex-col">
+            <h1 class="font-medium text-xl text-nowrap ">Mahima Gurung</h1>
           </div>
         </div>
-        <hr className="border-[1px] border-neutral-300 m-2"></hr>
-        <div className="flex flex-col px-4">
-          <div className="flex items-center gap-2">
-            <img className="w-6 h-6" src={email} alt="" />
-            <li className="py-2 text-blue-600">email</li>
+        <hr class="border-[1px] border-neutral-300 m-2"></hr>
+        <div class="flex flex-col px-4">
+          <div class="flex items-center gap-2">
+            <img class="w-6 h-6" src={email} alt="" />
+            <li class="py-2 text-blue-600">email</li>
           </div>
-          <div className="flex items-center gap-2">
-            <img className="w-6 h-6" src={phone} alt="" />
-
-            <li className="py-2 text-blue-600">contact/li>
-
+          <div class="flex items-center gap-2">
+            <img class="w-6 h-6" src={phone} alt="" />
+            <li class="py-2 text-blue-600">contact</li> <!-- Fixed missing closing tag -->
           </div>
-          <div className="flex justify-center">
-            <button
-              className="w-[100%] bg-blue-600 rounded p-2 mt-2 text-white "
-              onClick={openChangePassword}
-            >
+          <div class="flex justify-center">
+            <button class="w-[100%] bg-blue-600 rounded p-2 mt-2 text-white " onClick={openChangePassword}>
               Change Password
             </button>
           </div>
@@ -141,34 +132,40 @@
   </div>  
   <div class="content">
     <div class="date-time">
+        <!-- Script to update and display current date and time -->
         <script>
           function updateDateTime() {
-            var now = new Date();
-            var date = now.toLocaleDateString();
-            var time = now.toLocaleTimeString();
-            document.getElementById("datetime").textContent = date + " " + time;
+            var now = new Date(); // Get the current date and time
+            var date = now.toLocaleDateString(); // Format the date
+            var time = now.toLocaleTimeString(); // Format the time
+            document.getElementById("datetime").textContent = date + " " + time; // Display date and time
           }
-          setInterval(updateDateTime, 1000);
+          setInterval(updateDateTime, 1000); // Update every second
         </script>
+        <!-- Script to handle navbar link clicks -->
         <script>
           const menuLinks = document.querySelectorAll('.navbar a');
 
           menuLinks.forEach(link => {
             link.addEventListener('click', function(event) {
-              event.preventDefault();
+              event.preventDefault(); // Prevent default link behavior
       
-              const href = this.getAttribute('href');
+              const href = this.getAttribute('href'); // Get the link's href
 
-              window.location.href = href;
+              window.location.href = href; // Redirect to the specified URL
             });
           });
         </script>
-        <span id="datetime"></span>
+        <span id="datetime"></span> <!-- Placeholder for the date and time -->
       </div>
       <div class="search-bar">
-        <input type="text" placeholder="Search...">
+        <input type="text" placeholder="Search..."> <!-- Search input field -->
       </div>
-       <a href="/journal"><i class="create"></i> <img src="https://www.svgrepo.com/show/2825/add-symbol.svg" alt="create" style="margin-left: 300px; width:50px; height:50px;"></a> 
+       <!-- Link to create a new journal entry -->
+      <a href="/journal">
+        <i class="create"></i> 
+        <img src="https://www.svgrepo.com/show/2825/add-symbol.svg" alt="create" style="margin-left: 300px; width:50px; height:50px;">
+      </a> 
       <div class="quote">
         <h1 style="text-align: center;"> Quote of the day</h1>
         <p style="text-align: center;">Even if we don't have the power to choose where we come from, we can still choose where we go from there.</p>
@@ -178,25 +175,21 @@
     <div class="bg-slate-500 text-lg font-serif flex">
       Live Laugh Love 
     </div>
-    <!-- commented -->
+    <!-- Script for updating quotes -->
     <script>
-    const quoteContent = document.querySelector(".quote p");
-    const quoteAuthor = document.querySelector(".quote .author");
-    const newQuoteButton = document.querySelector(".quote .new");
+      const quoteContent = document.querySelector(".quote p");
+      const quoteAuthor = document.querySelector(".quote .author");
+      const newQuoteButton = document.querySelector(".quote .new");
 
-    const updateQuote = (data) => {
-      quoteContent.innerHTML = data.content;
-      quoteAuthor.innerHTML = data.author;
-    };
-    const nextQuote = () => {
-      fetch("https://api.quotable.io/random?maxLength=100")
-        .then((response) => response.json())
-        .then((data) => {
-          updateQuote(data);
-        });
-    }; 
-    nextQuote();
-    newQuoteButton.addEventListener("click", nextQuote);
-    </script>
-</body>
-</html> 
+      const updateQuote = (data) => {
+        quoteContent.innerHTML = data.content; // Update quote content
+        quoteAuthor.innerHTML = data.author; // Update quote author
+      };
+      const nextQuote = () => {
+        fetch("https://api.quotable.io/random?maxLength=100") // Fetch a random quote
+          .then((response) => response.json())
+          .then((data) => {
+            updateQuote(data); // Update the quote display
+          });
+      }; 
+      nextQuote(); // Fetch
