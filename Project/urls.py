@@ -6,6 +6,7 @@ from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 from django.conf import settings
 
+#url patterns for each page
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/' , views.home, name='home'),
