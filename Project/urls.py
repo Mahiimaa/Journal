@@ -17,6 +17,7 @@ urlpatterns = [
     path('journal/', views.create_entry, name='create_entry'),
     path('entries/', views.entries, name='entries'),
     path('logout/', views.dologout, name='logout'),
+    path('profile/', views.profile, name='profile'),
     path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
     path('delete/<int:entry_id>/', views.delete_entry, name='delete_entry'),
     # path('tags/', views.tags, name='tags'),

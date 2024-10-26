@@ -72,6 +72,10 @@ def calendar(request):
 def tags(request):
      return render(request, 'tags.html')
 
+@login_required
+def profile(request):
+    return render(request, 'profile.html')
+
 # Handles the creation of a new journal entry
 @login_required
 def create_entry(request):
