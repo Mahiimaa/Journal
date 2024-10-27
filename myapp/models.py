@@ -11,3 +11,4 @@ class Entry(models.Model):
     entry_image = models.ImageField(upload_to="media/entry-image")
     def __str__(self):
         return self.title
+

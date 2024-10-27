@@ -133,6 +133,7 @@ def delete_entry(request, entry_id):
         return redirect('unauthorized_access_error')  # Redirect if unauthorized
 
 # Logs out the current user
+@login_required
 def dologout(request):
     logout(request)  # Logout the user
     return redirect('login')  # Redirect to login page after logging out
