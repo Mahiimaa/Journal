@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot password</title>
+</head>
+<body>
+    <!-- Forgot password page -->
+    <form action="/forgot-password" method="post">
+        {% csrf_token %}
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <p>Don't have an account? <a href="/signup">Sign up</a></p>
+
+    <p>Back to <a href="/">Home</a></p>
+
+    <script>
+        document.getElementById('email').focus();
+    </script>
+</body>
+</html>
