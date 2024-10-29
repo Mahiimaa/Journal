@@ -3,9 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Help page</title>
 </head>
 <body>
-    
+    <!-- help page -->
+    <div class="div">
+        <h1>Help</h1>
+        <div class="main">
+        <p>This is a help page. You can find the links to other pages here.</p>
+        <p>Please note that the links may not work correctly if you are not logged in.</p>
+    </div>
+    <!-- links to different pages-->
+        <a href="{% url 'home' %}">Back to Home</a>
+        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'calendar' %}">Go to Calendar</a>
+        <a href="{% url 'entries' %}">Go to Journal Entries</a>
+        <a href="{% url 'tags' %}">Go to Tags</a>
+        <a href="{% url 'logout' %}">Logout of the system</a>
+        <a href="{% url 'settings' %}">Go to Settings</a>
+        <a href="{% url 'help' %}">Go to Help Page</a>
+        <div class="second">
+            <!--this is the second container-->
+            <h2>What? How? Where?</h2>
+            <p>This is to help you know more about this app. It is basically for you to learn what it actually does,
+                and how to do the right thing here on this app and Where.
+            </p>
+            <p>If you have any confusions or doubts you can take help and support from here.</p>
+            <p>This is a paragraph.</p>
+            <p>This is another paragraph.</p>
+            <p>This is a third paragraph.</p>
+            <p>This is a fourth paragraph.</p>
+            <p>This is a fifth paragraph.</p>
+            <p>This is a sixth paragraph.</p>
+            <p>This is a seventh paragraph.</p>
+            <p>This is an eighth paragraph.</p>
+            <p>This is a ninth paragraph.</p>
+            <p>This is a tenth paragraph.</p>
+            <p>This is a eleventh paragraph.</p>
+            <p>This is a twelfth paragraph.</p>
+            <div class="next">
+                <input type="text" placeholder="any questions" />
+                <button type="button">Submit</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
