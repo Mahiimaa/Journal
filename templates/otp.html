@@ -6,6 +6,7 @@
     <title>OTP</title>
 </head>
 <body>
+    
     <!-- otp page/ for entering the otp send to your phone or email -->
     <div class="main">
         <p>Please enter your OTP</p>
@@ -19,5 +20,9 @@
         {% endif %}
         <a href="{% url 'home' %}">Back to Home</a>
     </div>
+    <script>
+        document.getElementById('otp').focus();
+    </script>
+    {% block scripts %}
 </body>
 </html>
